@@ -14,6 +14,7 @@ WORKDIR /src
 
 RUN wget https://busybox.net/downloads/busybox-${BUSYBOX_VERSION}.tar.bz2 \
     && tar -xjf busybox-${BUSYBOX_VERSION}.tar.bz2 \
+    && rm -f busybox-${BUSYBOX_VERSION}.tar.bz2 \
     && mv busybox-${BUSYBOX_VERSION} busybox
 
 WORKDIR /src/busybox
@@ -36,6 +37,5 @@ RUN mkdir -p \
 
 RUN tar -C /rootfs -cpf /busybox-rootfs.tar .
 
-# export stage
 FROM scratch AS artifact
 COPY --from=builder /busybox-rootfs.tar /busybox-rootfs.tar

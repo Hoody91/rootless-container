@@ -3,6 +3,11 @@ name = "rootless-container"
 version = "0.1.0"
 edition = "2024"
 
+[lints.clippy]
+pedantic      = { level = "deny", priority = -1 }
+nursery       = { level = "deny", priority = -1 }
+unwrap_used   = "deny"
+
 [dependencies]
 anyhow = "1.0.102"
 nix = { version = "0.31.2", features = ["sched", "feature", "fs", "mount", "process", "hostname", "signal", "user"] }
